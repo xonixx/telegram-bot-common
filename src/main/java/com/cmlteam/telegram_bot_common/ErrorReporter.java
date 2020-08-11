@@ -18,7 +18,7 @@ import java.util.List;
 
 @Slf4j
 @RequiredArgsConstructor
-class ErrorReporter {
+public class ErrorReporter {
   private final TelegramBot telegramBot;
   private final JsonHelper jsonHelper;
   private final long adminUser;

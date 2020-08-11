@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import java.util.Map;
 
 @Component
-class JsonHelper {
+public class JsonHelper {
   private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
   String toPrettyString(Object obj) {
