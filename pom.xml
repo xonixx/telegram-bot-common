@@ -9,7 +9,7 @@
     <packaging>jar</packaging>
 
     <name>telegram-bot-common</name>
-    <description>Video Reply Telegram Bot</description>
+    <description>Some common code for multiple telegram bots</description>
 
     <repositories>
         <repository>
