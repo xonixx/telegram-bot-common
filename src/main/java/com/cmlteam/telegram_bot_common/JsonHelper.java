@@ -10,11 +10,11 @@ import java.util.Map;
 public class JsonHelper {
   private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-  String toPrettyString(Object obj) {
+  public String toPrettyString(Object obj) {
     return gson.toJson(obj);
   }
 
-  String toPrettyString(String str) {
+  public String toPrettyString(String str) {
     return toPrettyString(gson.fromJson(str, Map.class));
   }
 }

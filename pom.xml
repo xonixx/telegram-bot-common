@@ -5,7 +5,7 @@
 
     <groupId>com.cmlteam</groupId>
     <artifactId>telegram-bot-common</artifactId>
-    <version>0.0.2</version>
+    <version>v0.0.3</version>
     <packaging>jar</packaging>
 
     <name>telegram-bot-common</name>

@@ -10,7 +10,7 @@ public enum Emoji {
 
   private final String C;
 
-  String msg(String s) {
+  public String msg(String s) {
     return C + " " + s;
   }
 }
