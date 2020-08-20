@@ -21,7 +21,7 @@ import java.util.List;
 public class ErrorReporter {
   private final TelegramBot telegramBot;
   private final JsonHelper jsonHelper;
-  private final long adminUser;
+  private final List<Long> adminUsers;
   private final List<ErrorData> errors = Collections.synchronizedList(new ArrayList<>());
 
   public static final int ERROR_REPORT_INTERVAL = 5 * 60 * 1000; // 5 min
@@ -59,15 +59,17 @@ public class ErrorReporter {
           }
         }
 
-        SendResponse response =
-            telegramBot.execute(
-                new SendMessage(adminUser, msg.toString()).parseMode(ParseMode.HTML));
-
-        if (!response.isOk()) {
-          log.error(
-              "Error sending logs to admin: {}: {}", response.errorCode(), response.description());
+        for (Long adminUser : adminUsers) {
+          SendResponse response =
+              telegramBot.execute(
+                  new SendMessage(adminUser, msg.toString()).parseMode(ParseMode.HTML));
+          if (!response.isOk()) {
+            log.error(
+                "Error sending logs to admin: {}: {}",
+                response.errorCode(),
+                response.description());
+          }
         }
-
       } finally {
         errors.clear();
       }
