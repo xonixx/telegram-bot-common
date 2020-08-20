@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class LogHelper {
-  private void captureLogParams(Update update) {
+  public void captureLogParams(Update update) {
     MDC.clear();
 
     if (update == null) {
