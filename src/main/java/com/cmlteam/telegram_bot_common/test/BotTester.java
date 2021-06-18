@@ -25,5 +25,6 @@ public class BotTester {
 
   public void processUserText(User user, String text) {
 
-  };
+
+  }
 }
