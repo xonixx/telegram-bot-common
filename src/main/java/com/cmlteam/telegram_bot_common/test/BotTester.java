@@ -3,6 +3,7 @@ package com.cmlteam.telegram_bot_common.test;
 import com.cmlteam.telegram_bot_common.BotUpdateHandler;
 import com.cmlteam.telegram_bot_common.TelegramSender;
 import com.pengrad.telegrambot.model.Update;
+import com.pengrad.telegrambot.model.User;
 import com.pengrad.telegrambot.request.BaseRequest;
 import com.pengrad.telegrambot.response.BaseResponse;
 
@@ -21,4 +22,8 @@ public class BotTester {
           }
         };
   }
+
+  public void processUserText(User user, String text) {
+
+  };
 }
