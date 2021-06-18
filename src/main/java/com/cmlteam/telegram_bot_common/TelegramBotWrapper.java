@@ -11,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @RequiredArgsConstructor
 @Slf4j
-public class TelegramBotWrapper {
+public class TelegramBotWrapper implements TelegramSender {
   private final TelegramBot telegramBot;
   private final JsonHelper jsonHelper;
   private final ErrorReporter errorReporter;
@@ -36,6 +36,7 @@ public class TelegramBotWrapper {
     return execute(null, request);
   }
 
+  @Override
   public <T extends BaseRequest, R extends BaseResponse> R execute(
       Update userRequest, BaseRequest<T, R> request) {
     R response = telegramBot.execute(request);
