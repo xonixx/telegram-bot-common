@@ -5,6 +5,17 @@ import com.pengrad.telegrambot.request.BaseRequest;
 import com.pengrad.telegrambot.response.BaseResponse;
 
 public interface TelegramSender {
+  <T extends BaseRequest, R extends BaseResponse> R executeEx(BaseRequest<T, R> request);
+
+  <T extends BaseRequest, R extends BaseResponse> R executeEx(
+      Update userRequest, BaseRequest<T, R> request);
+
+  <T extends BaseRequest, R extends BaseResponse> R execute(BaseRequest<T, R> request);
+
   <T extends BaseRequest, R extends BaseResponse> R execute(
       Update userRequest, BaseRequest<T, R> request);
+
+  void sendMarkdownV2(long chatId, String text);
+
+  void sendText(long chatId, String text);
 }

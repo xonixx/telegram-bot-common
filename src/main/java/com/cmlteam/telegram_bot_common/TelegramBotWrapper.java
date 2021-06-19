@@ -16,12 +16,14 @@ public class TelegramBotWrapper implements TelegramSender {
   private final JsonHelper jsonHelper;
   private final ErrorReporter errorReporter;
 
+  @Override
   public <T extends BaseRequest, R extends BaseResponse> R executeEx(BaseRequest<T, R> request) {
     return checkErrorResp(execute(request));
   }
 
+  @Override
   public <T extends BaseRequest, R extends BaseResponse> R executeEx(
-      Update userRequest, BaseRequest<T, R> request) {
+          Update userRequest, BaseRequest<T, R> request) {
     return checkErrorResp(execute(userRequest, request));
   }
 
@@ -32,13 +34,14 @@ public class TelegramBotWrapper implements TelegramSender {
     return res;
   }
 
+  @Override
   public <T extends BaseRequest, R extends BaseResponse> R execute(BaseRequest<T, R> request) {
     return execute(null, request);
   }
 
   @Override
   public <T extends BaseRequest, R extends BaseResponse> R execute(
-      Update userRequest, BaseRequest<T, R> request) {
+          Update userRequest, BaseRequest<T, R> request) {
     R response = telegramBot.execute(request);
     if (!response.isOk()) {
       String requestStr = jsonHelper.toPrettyString(request.toWebhookResponse());
@@ -64,6 +67,7 @@ public class TelegramBotWrapper implements TelegramSender {
             .parseMode(ParseMode.MarkdownV2));
   }
 
+  @Override
   public void sendText(long chatId, String text) {
     execute(new SendMessage(chatId, text));
   }
