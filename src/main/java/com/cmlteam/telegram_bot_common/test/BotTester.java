@@ -9,22 +9,25 @@ import com.pengrad.telegrambot.response.BaseResponse;
 
 public class BotTester {
   private final BotUpdateHandler botUpdateHandler;
-  private final TelegramSender telegramSender;
+  private final TelegramFactory telegramFactory;
 
   public BotTester(BotUpdateHandler botUpdateHandler) {
     this.botUpdateHandler = botUpdateHandler;
-    telegramSender =
+    telegramFactory = new TelegramFactory();
+  }
+
+  public BotReply processUserText(User user, String text) {
+    BotReply botReply = new BotReply();
+    botUpdateHandler.processUpdate(
         new TelegramSender() {
           @Override
           public <T extends BaseRequest, R extends BaseResponse> R execute(
               Update userRequest, BaseRequest<T, R> request) {
-            return null;
+            botReply.add(request);
+            return null; // TODO
           }
-        };
-  }
-
-  public void processUserText(User user, String text) {
-
-
+        },
+        telegramFactory.messageFromUser(user, text));
+    return botReply;
   }
 }
