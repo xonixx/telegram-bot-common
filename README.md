@@ -2,6 +2,8 @@
 Some common code for multiple telegram bots
 
 ## Install
+ 
+**Note: only Java 11+ is supported**
 
 ```xml 
 <project>
