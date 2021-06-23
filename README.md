@@ -17,7 +17,7 @@ Some common code for multiple telegram bots
         <dependency>
             <groupId>com.github.xonixx</groupId>
             <artifactId>telegram-bot-common</artifactId>
-            <version>0.0.4</version>
+            <version>0.1.0</version>
         </dependency>
     </dependencies>
 </project>
