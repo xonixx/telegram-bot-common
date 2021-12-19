@@ -8,12 +8,13 @@ import com.pengrad.telegrambot.response.BaseResponse;
 
 public abstract class TelegramSenderBase implements TelegramSender {
   @Override
-  public <T extends BaseRequest, R extends BaseResponse> R executeEx(BaseRequest<T, R> request) {
+  public <T extends BaseRequest<T, R>, R extends BaseResponse> R executeEx(
+      BaseRequest<T, R> request) {
     return checkErrorResp(execute(request));
   }
 
   @Override
-  public <T extends BaseRequest, R extends BaseResponse> R executeEx(
+  public <T extends BaseRequest<T, R>, R extends BaseResponse> R executeEx(
       Update userRequest, BaseRequest<T, R> request) {
     return checkErrorResp(execute(userRequest, request));
   }
@@ -26,12 +27,13 @@ public abstract class TelegramSenderBase implements TelegramSender {
   }
 
   @Override
-  public <T extends BaseRequest, R extends BaseResponse> R execute(BaseRequest<T, R> request) {
+  public <T extends BaseRequest<T, R>, R extends BaseResponse> R execute(
+      BaseRequest<T, R> request) {
     return execute(null, request);
   }
 
   @Override
-  public abstract <T extends BaseRequest, R extends BaseResponse> R execute(
+  public abstract <T extends BaseRequest<T, R>, R extends BaseResponse> R execute(
       Update userRequest, BaseRequest<T, R> request);
 
   public void sendMarkdownV2(long chatId, String text) {

@@ -21,7 +21,7 @@ public class BotTester {
     botUpdateHandler.processUpdate(
         new TelegramSenderBase() {
           @Override
-          public <T extends BaseRequest, R extends BaseResponse> R execute(
+          public <T extends BaseRequest<T, R>, R extends BaseResponse> R execute(
               Update userRequest, BaseRequest<T, R> request) {
             botReply.add(request);
             return null; // TODO

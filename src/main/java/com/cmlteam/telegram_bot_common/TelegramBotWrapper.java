@@ -15,7 +15,7 @@ public class TelegramBotWrapper extends TelegramSenderBase {
   private final ErrorReporter errorReporter;
 
   @Override
-  public <T extends BaseRequest, R extends BaseResponse> R execute(
+  public <T extends BaseRequest<T, R>, R extends BaseResponse> R execute(
       Update userRequest, BaseRequest<T, R> request) {
     R response = telegramBot.execute(request);
     if (!response.isOk()) {
