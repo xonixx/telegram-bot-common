@@ -1,4 +1,7 @@
 # telegram-bot-common
+
+[![Unit Tests](https://github.com/xonixx/telegram-bot-common/actions/workflows/run-tests.yml/badge.svg)](https://github.com/xonixx/telegram-bot-common/actions/workflows/run-tests.yml)
+
 Some common code for multiple telegram bots
 
 ## Install
