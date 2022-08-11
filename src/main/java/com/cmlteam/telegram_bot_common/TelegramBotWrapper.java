@@ -20,18 +20,12 @@ public class TelegramBotWrapper extends TelegramSenderBase {
     R response = telegramBot.execute(request);
     if (!response.isOk()) {
       String requestStr = jsonHelper.toPrettyString(request.toWebhookResponse());
-      errorReporter.reportError(
-          new ErrorData(
-              userRequest,
-              response.errorCode(),
-              response.description(),
-              requestStr,
-              new Exception()));
-      log.error(
-          "ERROR #{}: {} for request:\n{}",
-          response.errorCode(),
-          response.description(),
-          requestStr);
+      String description = response.description();
+      int errorCode = response.errorCode();
+      log.error("ERROR #{}: {} for request:\n{}", errorCode, description, requestStr);
+      if (!(errorCode == 502 && "Bad Gateway".equals(description)))
+        errorReporter.reportError(
+            new ErrorData(userRequest, errorCode, description, requestStr, new Exception()));
     }
     return response;
   }
